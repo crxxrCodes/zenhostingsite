@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen Hosting - Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-text">ZEN HOSTING DASHBOARD</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <div class="dashboard" id="dashboard">
+        <div class="header">
+            <h1 class="title">ZEN HOSTING</h1>
+            <div class="subtitle">ADMIN CONTROL PANEL</div>
+        </div>
+
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalBots">0</div>
+                <div class="stat-label">TOTAL BOTS</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="onlineBots">0</div>
+                <div class="stat-label">ONLINE BOTS</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="offlineBots">0</div>
+                <div class="stat-label">OFFLINE BOTS</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalUsers">0</div>
+                <div class="stat-label">TOTAL USERS</div>
+            </div>
+        </div>
+
+        <div class="bots-section">
+            <h2 class="section-title">BOT MANAGEMENT</h2>
+            <div class="bots-grid" id="botsGrid">
+                <!-- Bot cards will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
