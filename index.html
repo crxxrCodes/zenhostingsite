@@ -3,530 +3,400 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zen Hosting - Admin Dashboard</title>
+    <title>Zen Hosting - Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background: #0a0a0a;
-            color: #00ffff;
-            font-family: 'Rajdhani', sans-serif;
-            overflow-x: hidden;
+            background-color: #f8f9fa;
+            color: #333;
             min-height: 100vh;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
         }
-        
-        .dashboard {
-            max-width: 1400px;
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
-            border-bottom: 1px solid #00ffff;
-            padding-bottom: 1rem;
+
+        header {
+            padding: 25px 0;
+            border-bottom: 1px solid #e0e0e0;
+            background-color: white;
         }
-        
-        .title {
-            font-family: 'Orbitron', monospace;
-            font-size: 3rem;
-            font-weight: 900;
-            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-            margin-bottom: 0.5rem;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: #00ffff;
-            opacity: 0.8;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        .stat-card {
-            background: linear-gradient(135deg, #001a1a, #003333);
-            border: 1px solid #00ffff;
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-        }
-        
-        .stat-number {
-            font-family: 'Orbitron', monospace;
-            font-size: 2.5rem;
+
+        .logo {
+            font-size: 28px;
             font-weight: 700;
-            color: #00ffff;
-            text-shadow: 0 0 10px #00ffff;
-        }
-        
-        .stat-label {
-            font-size: 1rem;
-            color: #00ffff;
-            opacity: 0.8;
-            margin-top: 0.5rem;
-        }
-        
-        .bots-section {
-            background: linear-gradient(135deg, #001a1a, #003333);
-            border: 1px solid #00ffff;
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-        }
-        
-        .section-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px #00ffff;
-        }
-        
-        .bots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .bot-card {
-            background: #001a1a;
-            border: 1px solid #00ffff;
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .bot-card:hover {
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-        
-        .bot-header {
+            color: #000;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
         }
-        
-        .bot-id {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #00ffff;
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
         }
-        
-        .bot-status {
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .status-online {
-            background: #00ff00;
-            color: #000;
-        }
-        
-        .status-offline {
-            background: #ff0000;
-            color: #fff;
-        }
-        
-        .bot-info {
-            margin-bottom: 1rem;
-        }
-        
-        .info-row {
+
+        .main-content {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding: 60px 0;
         }
-        
-        .info-label {
-            color: #00ffff;
-            opacity: 0.8;
+
+        .registration-section {
+            flex: 1;
+            min-width: 300px;
         }
-        
-        .info-value {
-            color: #00ffff;
+
+        .info-section {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #000;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #000;
             font-weight: 600;
         }
-        
-        .token-display {
-            background: #000;
-            border: 1px solid #00ffff;
-            border-radius: 4px;
-            padding: 0.5rem;
-            margin: 0.5rem 0;
-            font-family: monospace;
-            font-size: 0.8rem;
-            word-break: break-all;
-            color: #00ff00;
-            cursor: pointer;
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            color: #333;
+            font-size: 16px;
             transition: all 0.3s ease;
-            max-height: 60px;
-            overflow-y: auto;
         }
-        
-        .token-display:hover {
-            box-shadow: 0 0 10px #00ff00;
+
+        input:focus {
+            outline: none;
+            border-color: #000;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
         }
-        
-        .bot-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        
+
         .btn {
-            padding: 0.5rem 1rem;
+            display: inline-block;
+            padding: 12px 24px;
+            background: #000;
+            color: white;
             border: none;
-            border-radius: 4px;
-            font-family: 'Rajdhani', sans-serif;
+            border-radius: 6px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 0.8rem;
+            text-align: center;
+            width: 100%;
         }
-        
-        .btn-danger {
-            background: #ff0000;
+
+        .btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-discord {
+            background: #5865F2;
+            margin-top: 10px;
+        }
+
+        .btn-discord:hover {
+            background: #4752c4;
+            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.2);
+        }
+
+        .terms {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+
+        .terms a {
+            color: #000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        .fun-facts {
+            margin-top: 30px;
+        }
+
+        .fact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .fact-icon {
+            background: #000;
             color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
         }
-        
-        .btn-danger:hover {
-            background: #cc0000;
-            box-shadow: 0 0 10px #ff0000;
-        }
-        
-        .btn-primary {
-            background: #00ffff;
+
+        .fact-content h4 {
+            margin-bottom: 5px;
             color: #000;
         }
-        
-        .btn-primary:hover {
-            background: #00cccc;
-            box-shadow: 0 0 10px #00ffff;
+
+        .fact-content p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
         }
-        
-        .message-input {
-            width: 100%;
-            background: #000;
-            border: 1px solid #00ffff;
-            border-radius: 4px;
-            padding: 0.5rem;
-            color: #00ffff;
-            margin-bottom: 0.5rem;
-            font-family: 'Rajdhani', sans-serif;
+
+        .quote-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #000;
         }
-        
-        .message-input::placeholder {
-            color: #00ffff;
-            opacity: 0.6;
+
+        .quote {
+            font-style: italic;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #333;
         }
-        
-        .message-input:focus {
-            outline: none;
-            box-shadow: 0 0 10px #00ffff;
+
+        .quote-author {
+            color: #666;
+            font-size: 14px;
         }
-        
+
+        .mission-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .mission-link {
+            color: #000;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .mission-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 30px 0;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #e0e0e0;
+            background-color: white;
+        }
+
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
+            .main-content {
+                flex-direction: column;
             }
             
-            .title {
-                font-size: 2rem;
-            }
-            
-            .bots-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .bot-actions {
-                grid-template-columns: 1fr;
+            .registration-section, .info-section {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <div class="dashboard">
-        <div class="header">
-            <h1 class="title">ZEN HOSTING</h1>
-            <div class="subtitle">ADMIN CONTROL PANEL</div>
-        </div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                ZEN HOSTING
+            </div>
+        </header>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number" id="totalBots">3</div>
-                <div class="stat-label">TOTAL BOTS</div>
+        <div class="main-content">
+            <div class="registration-section">
+                <div class="card">
+                    <h1>Welcome to Zen Hosting</h1>
+                    <p class="subtitle">Launch, host, orbit. Sign up to deploy your projects and manage your infrastructure.</p>
+                    
+                    <form id="registration-form">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Create a secure password" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm Password</label>
+                            <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" required>
+                        </div>
+                        
+                        <button type="submit" class="btn">Create Account</button>
+                        <button type="button" class="btn btn-discord">
+                            <i class="fab fa-discord"></i> Sign Up with Discord
+                        </button>
+                        
+                        <p class="terms">
+                            By continuing you accept our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        </p>
+                    </form>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number" id="onlineBots">2</div>
-                <div class="stat-label">ONLINE BOTS</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="offlineBots">1</div>
-                <div class="stat-label">OFFLINE BOTS</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="totalUsers">1</div>
-                <div class="stat-label">TOTAL USERS</div>
+            
+            <div class="info-section">
+                <div class="card">
+                    <h2>Why Choose Zen Hosting?</h2>
+                    
+                    <div class="fun-facts">
+                        <div class="fact-item">
+                            <div class="fact-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <div class="fact-content">
+                                <h4>Reliable Uptime</h4>
+                                <p>We keep your bots online with consistent uptime and fast response times so your projects run smoothly around the clock.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="fact-item">
+                            <div class="fact-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="fact-content">
+                                <h4>Fast Setup</h4>
+                                <p>Launch your bot in minutes with simple deployment and systems that handle the heavy lifting for you.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="fact-item">
+                            <div class="fact-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="fact-content">
+                                <h4>Steady Performance</h4>
+                                <p>Our servers are tuned for Discord, giving you consistent speed and reliability even under high demand.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="fact-item">
+                            <div class="fact-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="fact-content">
+                                <h4>Support That Cares</h4>
+                                <p>Our team is always ready to help with quick, friendly support focused on keeping your bot online and performing at its best.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quote-section">
+                        <p class="quote">"The Milky Way smells like raspberries and rum, we call that the aroma of uptime."</p>
+                        <p class="quote-author">Sweet stability. Cosmic reliability.</p>
+                    </div>
+                    
+                    <div class="mission-links">
+                        <a href="#" class="mission-link">Support Server</a>
+                        <a href="#" class="mission-link">Network Status</a>
+                        <a href="#" class="mission-link">Main Website</a>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="bots-section">
-            <h2 class="section-title">BOT MANAGEMENT</h2>
-            <div class="bots-grid" id="botsGrid">
-                <!-- Bot cards will be populated by JavaScript -->
-            </div>
-        </div>
+        
+        <footer>
+            <p>Zen Hosting &copy; 2025</p>
+        </footer>
     </div>
 
     <script>
-        // Sample bot data - in real implementation, this would come from your API
-        const botsData = [
-            {
-                id: '123456789012345678',
-                owner_id: '1435310225010987088',
-                username: 'TestBot#1234',
-                token: 'MTQ0NDIxMzEwNDU1NTcyMDcwNg.GVVyEu.U0sjyvk0DbmlpZhtNZeGxspnJwyITLmDsMEKgk',
-                language: 'python',
-                running: true,
-                created_at: '2024-01-15T10:30:00Z',
-                packages: ['discord.py', 'python-dotenv'],
-                ip: '192.168.1.100'
-            },
-            {
-                id: '987654321098765432',
-                owner_id: '1435310225010987088',
-                username: 'JSBot#5678',
-                token: 'MTQ0NDIxMzEwNDU1NTcyMDcwNg.GVVyEu.another_token_here_12345',
-                language: 'javascript',
-                running: false,
-                created_at: '2024-01-14T15:45:00Z',
-                packages: ['discord.js', 'dotenv'],
-                ip: '192.168.1.101'
-            },
-            {
-                id: '555555555555555555',
-                owner_id: '1435310225010987088',
-                username: 'JavaBot#9999',
-                token: 'MTQ0NDIxMzEwNDU1NTcyMDcwNg.GVVyEu.java_token_here_67890',
-                language: 'java',
-                running: true,
-                created_at: '2024-01-13T08:20:00Z',
-                packages: ['JDA', 'dotenv'],
-                ip: '192.168.1.102'
+        document.getElementById('registration-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
             }
-        ];
-
-        // Render bots when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            renderBots(botsData);
+            
+            // In a real application, you would submit the form to a server here
+            alert('Account created successfully! Welcome to Zen Hosting.');
         });
-
-        function renderBots(bots) {
-            const botsGrid = document.getElementById('botsGrid');
-            if (!botsGrid) return;
-            
-            botsGrid.innerHTML = '';
-
-            bots.forEach(bot => {
-                const botCard = document.createElement('div');
-                botCard.className = 'bot-card';
-                botCard.innerHTML = `
-                    <div class="bot-header">
-                        <div class="bot-id">BOT ${bot.id}</div>
-                        <div class="bot-status ${bot.running ? 'status-online' : 'status-offline'}">
-                            ${bot.running ? 'ONLINE' : 'OFFLINE'}
-                        </div>
-                    </div>
-                    <div class="bot-info">
-                        <div class="info-row">
-                            <span class="info-label">Owner ID:</span>
-                            <span class="info-value">${bot.owner_id}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Username:</span>
-                            <span class="info-value">${bot.username}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Language:</span>
-                            <span class="info-value">${bot.language.toUpperCase()}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">IP Address:</span>
-                            <span class="info-value">${bot.ip}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Created:</span>
-                            <span class="info-value">${new Date(bot.created_at).toLocaleDateString()}</span>
-                        </div>
-                        <div class="info-row">
-                            <span class="info-label">Packages:</span>
-                            <span class="info-value">${bot.packages.join(', ') || 'None'}</span>
-                        </div>
-                    </div>
-                    <div class="token-display" title="Click to copy" onclick="copyToken('${bot.token}')">
-                        ${bot.token}
-                    </div>
-                    <input type="text" class="message-input" placeholder="Type message to send through bot..." id="message-${bot.id}">
-                    <div class="bot-actions">
-                        <button class="btn btn-primary" onclick="sendMessage('${bot.id}')">
-                            Send Message
-                        </button>
-                        <button class="btn btn-danger" onclick="unhostBot('${bot.id}')">
-                            Unhost Bot
-                        </button>
-                    </div>
-                `;
-                botsGrid.appendChild(botCard);
-            });
-        }
-
-        function copyToken(token) {
-            navigator.clipboard.writeText(token).then(() => {
-                showSuccess('Token copied to clipboard!');
-            }).catch(() => {
-                // Fallback for older browsers
-                const textArea = document.createElement('textarea');
-                textArea.value = token;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                showSuccess('Token copied to clipboard!');
-            });
-        }
-
-        function sendMessage(botId) {
-            const messageInput = document.getElementById(`message-${botId}`);
-            if (!messageInput) return;
-            
-            const message = messageInput.value.trim();
-            
-            if (!message) {
-                showError('Please enter a message');
-                return;
-            }
-
-            // Simulate sending message
-            showSuccess(`Message sent through bot ${botId}: "${message}"`);
-            messageInput.value = '';
-        }
-
-        function unhostBot(botId) {
-            if (!confirm('Are you sure you want to unhost this bot? This action cannot be undone.')) {
-                return;
-            }
-
-            // Simulate unhosting
-            showSuccess(`Bot ${botId} unhosting initiated!`);
-            
-            // Remove bot from display (in real implementation, this would call your API)
-            const updatedBots = botsData.filter(bot => bot.id !== botId);
-            renderBots(updatedBots);
-            
-            // Update stats
-            document.getElementById('totalBots').textContent = updatedBots.length;
-            document.getElementById('onlineBots').textContent = updatedBots.filter(bot => bot.running).length;
-            document.getElementById('offlineBots').textContent = updatedBots.filter(bot => !bot.running).length;
-        }
-
-        function showSuccess(message) {
-            // Create toast notification
-            const toast = document.createElement('div');
-            toast.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #00ff00;
-                color: #000;
-                padding: 12px 20px;
-                border-radius: 4px;
-                font-weight: 600;
-                z-index: 1000;
-                box-shadow: 0 0 10px #00ff00;
-                animation: slideIn 0.3s ease-out;
-            `;
-            toast.textContent = `✅ ${message}`;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    document.body.removeChild(toast);
-                }
-            }, 3000);
-        }
-
-        function showError(message) {
-            // Create error toast notification
-            const toast = document.createElement('div');
-            toast.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #ff0000;
-                color: #fff;
-                padding: 12px 20px;
-                border-radius: 4px;
-                font-weight: 600;
-                z-index: 1000;
-                box-shadow: 0 0 10px #ff0000;
-                animation: slideIn 0.3s ease-out;
-            `;
-            toast.textContent = `❌ ${message}`;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    document.body.removeChild(toast);
-                }
-            }, 3000);
-        }
-
-        // Add CSS for toast animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
