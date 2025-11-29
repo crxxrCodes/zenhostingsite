@@ -5,263 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zen Hosting - Support Center</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            padding: 25px 0;
-            border-bottom: 1px solid #e0e0e0;
-            background-color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: #000;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo i {
-            margin-right: 10px;
-            font-size: 32px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-link {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background-color: #f0f0f0;
-        }
-
-        .main-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            padding: 60px 0;
-        }
-
-        .hero-section {
-            width: 100%;
-            margin-bottom: 40px;
-        }
-
-        .hero-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 40px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e0e0e0;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 15px;
-            color: #000;
-            font-weight: 700;
-        }
-
-        .hero-subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: #000;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        .btn:hover {
-            background: #333;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: #000;
-            border: 1px solid #000;
-        }
-
-        .btn-outline:hover {
-            background: #000;
-            color: white;
-        }
-
-        .content-section {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .sidebar {
-            flex: 0 0 300px;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e0e0e0;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #000;
-            font-weight: 600;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #000;
-            font-weight: 600;
-        }
-
-        .path-list {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-
-        .path-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .path-list li:last-child {
-            border-bottom: none;
-        }
-
-        .path-list a {
-            color: #333;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .path-list a:hover {
-            color: #000;
-            text-decoration: underline;
-        }
-
-        .path-list i {
-            margin-right: 10px;
-            color: #666;
-        }
-
-        .help-list {
-            list-style: none;
-        }
-
-        .help-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .help-list li:last-child {
-            border-bottom: none;
-        }
-
-        .help-list a {
-            color: #333;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .help-list a:hover {
-            color: #000;
-            text-decoration: underline;
-        }
-
-        .help-list i {
-            margin-right: 10px;
-            color: #666;
-        }
-
-        .community-section {
-            margin-top: 30px;
-        }
-
-        .links-section {
-            margin-top: 30px;
-        }
-
-        footer {
-            margin-top: auto;
-            padding: 30px 0;
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-            border-top: 1px solid #e0e0e0;
-            background-color: white;
-        }
-
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-            }
-            
-            .content-section, .sidebar {
-                width: 100%;
-            }
-            
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
     <div class="container">
@@ -270,115 +14,41 @@
                 <i class="fas fa-leaf"></i>
                 ZEN HOSTING
             </div>
-            <div class="nav-links">
-                <a href="#" class="nav-link">Home</a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
                 <a href="#" class="nav-link">Services</a>
                 <a href="#" class="nav-link">Pricing</a>
                 <a href="#" class="nav-link">Support</a>
                 <button id="dashboard-btn" class="btn">Go to Dashboard</button>
-            </div>
+            </nav>
         </header>
 
-        <div class="main-content">
-            <div class="hero-section">
+        <main class="main-content">
+            <section class="hero-section">
                 <div class="hero-card">
                     <h1>Support Center: How can we assist you?</h1>
                     <p class="hero-subtitle">Find answers, guides, and resources to help you with Zen Hosting services</p>
                     <a href="#" class="btn"><i class="fab fa-discord"></i> Join our Discord</a>
                     <a href="#" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> Panel Link</a>
                 </div>
+            </section>
+
+            <div class="content-grid">
+                <section class="content-section">
+                    <!-- Content cards here -->
+                </section>
+
+                <aside class="sidebar">
+                    <!-- Sidebar content here -->
+                </aside>
             </div>
-
-            <div class="content-section">
-                <div class="card">
-                    <h2>Paths</h2>
-                    <ul class="path-list">
-                        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="/path/gen_device"><i class="fas fa-microchip"></i> Generate Device</a></li>
-                        <li><a href="/business"><i class="fas fa-briefcase"></i> Business</a></li>
-                        <li><a href="/services"><i class="fas fa-cogs"></i> Services</a></li>
-                        <li><a href="/user"><i class="fas fa-user"></i> User Dashboard</a></li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h2>Getting Started</h2>
-                    <p>Let's get you on your journey with Zen Hosting. Follow our guides to set up your hosting environment quickly and efficiently.</p>
-                    <a href="#" class="btn" style="margin-top: 15px; display: inline-block;">View Getting Started Guide</a>
-                </div>
-
-                <div class="card">
-                    <h2>Announcements</h2>
-                    <p>Get the latest announcements about service updates, new features, and maintenance schedules.</p>
-                    <a href="#" class="btn btn-outline" style="margin-top: 15px; display: inline-block;">View All Announcements</a>
-                </div>
-
-                <div class="card">
-                    <h2>Terms of Service</h2>
-                    <p>Read over our official terms of service and usage policies to understand your rights and responsibilities.</p>
-                    <a href="#" class="btn btn-outline" style="margin-top: 15px; display: inline-block;">Read Terms of Service</a>
-                </div>
-            </div>
-
-            <div class="sidebar">
-                <div class="card">
-                    <h3>Help</h3>
-                    <ul class="help-list">
-                        <li><a href="#"><i class="fas fa-rocket"></i> Getting Started</a></li>
-                        <li><a href="#"><i class="fas fa-bullhorn"></i> Announcements</a></li>
-                        <li><a href="#"><i class="fas fa-code"></i> Scriptlets</a></li>
-                        <li><a href="#"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
-                        <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
-                    </ul>
-                </div>
-
-                <div class="card community-section">
-                    <h3>Community</h3>
-                    <p>Join our community to get help, share ideas, and connect with other users.</p>
-                    <a href="#" class="btn" style="margin-top: 15px; display: block; text-align: center;"><i class="fab fa-discord"></i> Discord Server</a>
-                </div>
-
-                <div class="card links-section">
-                    <h3>Links</h3>
-                    <p>Quick access to important Zen Hosting resources.</p>
-                    <a href="#" class="btn btn-outline" style="margin-top: 15px; display: block; text-align: center;"><i class="fas fa-tachometer-alt"></i> Control Panel</a>
-                    <button id="sidebar-dashboard-btn" class="btn" style="margin-top: 10px; display: block; text-align: center;"><i class="fas fa-tachometer-alt"></i> Go to Dashboard</button>
-                </div>
-            </div>
-        </div>
+        </main>
         
         <footer>
             <p>Zen Hosting &copy; 2025</p>
         </footer>
     </div>
 
-    <script>
-        // Check if user is logged in (using localStorage for demo)
-        function isLoggedIn() {
-            return localStorage.getItem('zenHostingLoggedIn') === 'true';
-        }
-
-        // Dashboard button functionality
-        function handleDashboardClick() {
-            if (isLoggedIn()) {
-                // Redirect to dashboard if logged in
-                window.location.href = 'https://zenhosting.netlify.app/dashboard';
-            } else {
-                // Redirect to register if not logged in
-                window.location.href = 'https://zenhosting.netlify.app/register';
-            }
-        }
-
-        // Add event listeners to dashboard buttons
-        document.getElementById('dashboard-btn').addEventListener('click', handleDashboardClick);
-        document.getElementById('sidebar-dashboard-btn').addEventListener('click', handleDashboardClick);
-
-        // For demo purposes - simulate login state
-        // In a real application, this would be handled by your authentication system
-        console.log('Current login status:', isLoggedIn());
-        
-        // Uncomment the line below to simulate being logged in for testing
-        // localStorage.setItem('zenHostingLoggedIn', 'true');
-    </script>
+    <script src="scripts/auth.js"></script>
 </body>
 </html>
