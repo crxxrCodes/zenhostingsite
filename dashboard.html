@@ -1,1 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen Hosting - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e0e0;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-info .username {
+            font-weight: 600;
+            color: #000;
+        }
+
+        .user-info .discord-id {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: #333;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #000;
+            border: 1px solid #000;
+        }
+
+        .btn-outline:hover {
+            background: #000;
+            color: white;
+        }
+
+        .main-content {
+            padding: 40px 0;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header h1 {
+            font-size: 32px;
+            color: #000;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+            margin-bottom: 25px;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #000;
+            display: flex;
+            align-items: center;
+        }
+
+        .card h2 i {
+            margin-right: 10px;
+            color: #5865F2;
+        }
+
+        .bot-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .bot-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .bot-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .bot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .bot-name {
+            font-weight: 600;
+            color: #000;
+            font-size: 18px;
+        }
+
+        .bot-status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-online {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .status-offline {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .bot-details {
+            margin-bottom: 15px;
+        }
+
+        .bot-detail {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .bot-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .bot-actions .btn {
+            flex: 1;
+            text-align: center;
+            padding: 8px;
+            font-size: 13px;
+        }
+
+        .no-bots {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .no-bots i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+
+        .add-bot-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border: 2px dashed #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-bot-card:hover {
+            border-color: #000;
+            background: #f0f0f0;
+        }
+
+        .add-bot-card i {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 30px 0;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                ZEN HOSTING
+            </div>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="username" id="header-username">User</div>
+                    <div class="discord-id" id="header-discord-id">Discord ID: 123456789</div>
+                </div>
+                <a href="index.html" class="btn btn-outline">Logout</a>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h1>Bot Dashboard</h1>
+                <button id="add-bot-btn" class="btn">
+                    <i class="fas fa-plus"></i> Add New Bot
+                </button>
+            </div>
+
+            <div class="stats">
+                <div class="card stat-card">
+                    <div class="stat-number" id="total-bots">0</div>
+                    <div class="stat-label">Total Bots</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-number" id="online-bots">0</div>
+                    <div class="stat-label">Online Bots</div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-number" id="total-servers">0</div>
+                    <div class="stat-label">Total Servers</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-robot"></i> Your Discord Bots</h2>
+                <div class="bot-list" id="bot-list">
+                    <!-- Bot cards will be dynamically added here -->
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Zen Hosting &copy; 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // Get user info from localStorage
+        function getUserInfo() {
+            return {
+                username: localStorage.getItem('zenHostingUsername') || 'User',
+                discordId: localStorage.getItem('zenHostingDiscordId') || '123456789',
+                discordUsername: localStorage.getItem('zenHostingDiscordUsername') || 'User#0000'
+            };
+        }
+
+        // Get bots from localStorage or initialize
+        function getBots() {
+            const bots = localStorage.getItem('zenHostingBots');
+            return bots ? JSON.parse(bots) : [];
+        }
+
+        // Save bots to localStorage
+        function saveBots(bots) {
+            localStorage.setItem('zenHostingBots', JSON.stringify(bots));
+        }
+
+        // Update dashboard stats
+        function updateStats() {
+            const bots = getBots();
+            const onlineBots = bots.filter(bot => bot.status === 'online').length;
+            const totalServers = bots.reduce((sum, bot) => sum + (bot.servers || 0), 0);
+            
+            document.getElementById('total-bots').textContent = bots.length;
+            document.getElementById('online-bots').textContent = onlineBots;
+            document.getElementById('total-servers').textContent = totalServers;
+        }
+
+        // Render bot list
+        function renderBots() {
+            const botList = document.getElementById('bot-list');
+            const bots = getBots();
+            
+            botList.innerHTML = '';
+            
+            if (bots.length === 0) {
+                botList.innerHTML = `
+                    <div class="no-bots">
+                        <i class="fas fa-robot"></i>
+                        <h3>No Bots Found</h3>
+                        <p>Get started by adding your first Discord bot</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            bots.forEach((bot, index) => {
+                const botCard = document.createElement('div');
+                botCard.className = 'bot-card';
+                botCard.innerHTML = `
+                    <div class="bot-header">
+                        <div class="bot-name">${bot.name}</div>
+                        <div class="bot-status status-${bot.status}">${bot.status.toUpperCase()}</div>
+                    </div>
+                    <div class="bot-details">
+                        <div class="bot-detail">
+                            <span>Bot ID:</span>
+                            <span>${bot.id}</span>
+                        </div>
+                        <div class="bot-detail">
+                            <span>Servers:</span>
+                            <span>${bot.servers}</span>
+                        </div>
+                        <div class="bot-detail">
+                            <span>Uptime:</span>
+                            <span>${bot.uptime}</span>
+                        </div>
+                    </div>
+                    <div class="bot-actions">
+                        <button class="btn" onclick="restartBot(${index})">Restart</button>
+                        <button class="btn btn-outline" onclick="manageBot(${index})">Manage</button>
+                        <button class="btn btn-outline" onclick="removeBot(${index})">Remove</button>
+                    </div>
+                `;
+                botList.appendChild(botCard);
+            });
+            
+            // Add "Add Bot" card
+            const addCard = document.createElement('div');
+            addCard.className = 'bot-card add-bot-card';
+            addCard.innerHTML = `
+                <i class="fas fa-plus"></i>
+                <div>Add New Bot</div>
+            `;
+            addCard.addEventListener('click', addNewBot);
+            botList.appendChild(addCard);
+        }
+
+        // Add new bot
+        function addNewBot() {
+            const botNames = ['Music Bot', 'Moderation Bot', 'Utility Bot', 'Game Bot', 'Custom Bot'];
+            const randomName = botNames[Math.floor(Math.random() * botNames.length)];
+            
+            const newBot = {
+                id: 'bot_' + Math.random().toString(36).substr(2, 9),
+                name: randomName,
+                status: Math.random() > 0.3 ? 'online' : 'offline',
+                servers: Math.floor(Math.random() * 50) + 1,
+                uptime: Math.random() > 0.5 ? '99.8%' : '0%'
+            };
+            
+            const bots = getBots();
+            bots.push(newBot);
+            saveBots(bots);
+            
+            renderBots();
+            updateStats();
+            alert(`Successfully added ${newBot.name}`);
+        }
+
+        // Restart bot
+        function restartBot(index) {
+            const bots = getBots();
+            if (bots[index]) {
+                bots[index].status = 'online';
+                bots[index].uptime = '99.9%';
+                saveBots(bots);
+                renderBots();
+                updateStats();
+                alert(`${bots[index].name} has been restarted`);
+            }
+        }
+
+        // Manage bot (placeholder function)
+        function manageBot(index) {
+            const bots = getBots();
+            if (bots[index]) {
+                alert(`Managing ${bots[index].name} - This would open detailed bot management`);
+            }
+        }
+
+        // Remove bot
+        function removeBot(index) {
+            const bots = getBots();
+            if (bots[index] && confirm(`Are you sure you want to remove ${bots[index].name}?`)) {
+                const removedBot = bots.splice(index, 1)[0];
+                saveBots(bots);
+                renderBots();
+                updateStats();
+                alert(`Removed ${removedBot.name}`);
+            }
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = getUserInfo();
+            document.getElementById('header-username').textContent = user.discordUsername;
+            document.getElementById('header-discord-id').textContent = `Discord ID: ${user.discordId}`;
+            
+            // Check if user is logged in
+            if (localStorage.getItem('zenHostingLoggedIn') !== 'true') {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            renderBots();
+            updateStats();
+            
+            document.getElementById('add-bot-btn').addEventListener('click', addNewBot);
+        });
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('zenHostingLoggedIn');
+            localStorage.removeItem('zenHostingUsername');
+            localStorage.removeItem('zenHostingDiscordId');
+            localStorage.removeItem('zenHostingDiscordUsername');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
