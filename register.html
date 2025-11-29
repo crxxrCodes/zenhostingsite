@@ -5,264 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zen Hosting - Register</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container {
-            max-width: 500px;
-            width: 90%;
-        }
-
-        .logo {
-            font-size: 48px;
-            font-weight: 700;
-            color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .logo i {
-            margin-right: 15px;
-            font-size: 52px;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e0e0e0;
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            color: #000;
-            font-weight: 600;
-        }
-
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #333;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 12px 15px;
-            background-color: #f8f9fa;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            color: #333;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: #000;
-            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: #000;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            margin-bottom: 15px;
-        }
-
-        .btn:hover {
-            background: #333;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-discord {
-            background: #5865F2;
-        }
-
-        .btn-discord:hover {
-            background: #4752c4;
-            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.2);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: #000;
-            border: 1px solid #000;
-        }
-
-        .btn-outline:hover {
-            background: #000;
-            color: white;
-        }
-
-        .terms {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #666;
-            text-align: center;
-        }
-
-        .terms a {
-            color: #000;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .terms a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            margin-top: 30px;
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/popups.css">
 </head>
 <body>
     <div class="container">
-        <div class="logo">
-            <i class="fas fa-leaf"></i>
-            ZEN HOSTING
-        </div>
+        <header>
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                ZEN HOSTING
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <button class="btn dashboard-btn">Go to Dashboard</button>
+            </nav>
+        </header>
 
-        <div class="card">
-            <h1>Create Account</h1>
-            <p class="subtitle">Register to manage your Discord bots</p>
-            
-            <form id="registration-form">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+        <main>
+            <div class="auth-container">
+                <div class="card auth-card">
+                    <div class="auth-logo">
+                        <i class="fas fa-leaf"></i>
+                        ZEN HOSTING
+                    </div>
+                    
+                    <h1 class="auth-title">Create Account</h1>
+                    <p class="auth-subtitle">Register to start hosting your Discord bots</p>
+                    
+                    <form id="registration-form">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Create a secure password" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm Password</label>
+                            <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" required>
+                        </div>
+                        
+                        <button type="submit" class="btn">Create Account</button>
+                        <button type="button" class="btn btn-discord" id="discord-register">
+                            <i class="fab fa-discord"></i> Sign Up with Discord
+                        </button>
+                    </form>
+                    
+                    <a href="index.html" class="btn btn-outline" style="margin-top: 15px; display: block;">Back to Home</a>
+                    
+                    <p class="terms">
+                        By continuing you accept our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </p>
                 </div>
-                
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Choose a username" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Create a secure password" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="discord-username">Discord Username</label>
-                    <input type="text" id="discord-username" name="discord-username" placeholder="YourDiscord#1234" required>
-                </div>
-                
-                <button type="submit" class="btn">Create Account</button>
-                <button type="button" class="btn btn-discord">
-                    <i class="fab fa-discord"></i> Sign Up with Discord
-                </button>
-            </form>
-            
-            <a href="index.html" class="btn btn-outline" style="margin-top: 10px;">Back to Home</a>
-            
-            <p class="terms">
-                By continuing you accept our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-            </p>
-        </div>
+            </div>
+        </main>
         
         <footer>
             <p>Zen Hosting &copy; 2025</p>
         </footer>
     </div>
 
+    <script src="js/auth.js"></script>
+    <script src="js/discord.js"></script>
+    <script src="js/popups.js"></script>
     <script>
         document.getElementById('registration-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
-            const discordUsername = document.getElementById('discord-username').value;
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
             
             if (password !== confirmPassword) {
-                alert('Passwords do not match!');
+                popupManager.showError('Passwords do not match!');
                 return;
             }
             
-            if (!discordUsername.includes('#')) {
-                alert('Please enter a valid Discord username (format: Name#1234)');
+            if (!email.includes('@')) {
+                popupManager.showError('Please enter a valid email address');
                 return;
             }
             
-            // Store registration data
-            localStorage.setItem('zenHostingLoggedIn', 'true');
-            localStorage.setItem('zenHostingUsername', document.getElementById('username').value);
-            localStorage.setItem('zenHostingDiscordId', 'new_user_' + Date.now());
-            localStorage.setItem('zenHostingDiscordUsername', discordUsername);
+            // Create regular user account
+            const user = {
+                id: 'user_' + Date.now(),
+                username: username,
+                email: email,
+                isDiscordLogin: false,
+                loginTime: new Date().toISOString()
+            };
+
+            authManager.saveUser(user);
+            popupManager.showSuccess('Account created successfully!');
             
-            alert('Account created successfully! Welcome to Zen Hosting.');
-            window.location.href = 'dashboard.html';
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 2000);
         });
 
-        // Discord OAuth signup
-        document.querySelector('.btn-discord').addEventListener('click', function() {
-            // Simulate Discord OAuth flow
-            const discordUsers = [
-                { username: 'AlexBrown#4321', id: '987654321098765432', avatar: '' },
-                { username: 'EmmaWilson#8765', id: '876543210987654321', avatar: '' },
-                { username: 'ChrisLee#2109', id: '765432109876543210', avatar: '' }
-            ];
-            
-            const randomUser = discordUsers[Math.floor(Math.random() * discordUsers.length)];
-            
-            localStorage.setItem('zenHostingLoggedIn', 'true');
-            localStorage.setItem('zenHostingUsername', randomUser.username.split('#')[0]);
-            localStorage.setItem('zenHostingDiscordId', randomUser.id);
-            localStorage.setItem('zenHostingDiscordUsername', randomUser.username);
-            
-            alert(`Successfully registered with Discord as ${randomUser.username}`);
-            window.location.href = 'dashboard.html';
+        document.getElementById('discord-register').addEventListener('click', () => {
+            discordAuth.login();
         });
     </script>
 </body>
