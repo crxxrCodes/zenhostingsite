@@ -1,9 +1,20 @@
+// script.js - Fixed Version
 // Loading screen transition
-setTimeout(() => {
-    document.getElementById('loadingScreen').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'block';
-    loadDashboardData();
-}, 3000);
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        const loadingScreen = document.getElementById('loadingScreen');
+        const dashboard = document.getElementById('dashboard');
+        
+        if (loadingScreen) {
+            loadingScreen.style.display = 'none';
+        }
+        if (dashboard) {
+            dashboard.style.display = 'block';
+        }
+        
+        loadDashboardData();
+    }, 3000);
+});
 
 // API endpoint - replace with your actual API URL
 const API_BASE_URL = 'https://your-api.vercel.app/api';
@@ -11,36 +22,45 @@ const API_BASE_URL = 'https://your-api.vercel.app/api';
 // Load dashboard data
 async function loadDashboardData() {
     try {
-        // In a real implementation, you would fetch from your API
-        // const response = await fetch(`${API_BASE_URL}/bots`);
-        // const bots = await response.json();
+        showLoadingState();
         
-        // For demo purposes, using mock data
+        // Simulate API call with delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // For now, using mock data since we don't have a real API
         const bots = await getMockBotData();
         
         updateStats(bots);
         renderBots(bots);
         
-        // Auto-refresh every 10 seconds
+        hideLoadingState();
+        
+        // Auto-refresh every 30 seconds
         setInterval(async () => {
-            // const newResponse = await fetch(`${API_BASE_URL}/bots`);
-            // const newBots = await newResponse.json();
             const newBots = await getMockBotData();
             updateStats(newBots);
             renderBots(newBots);
-        }, 10000);
+        }, 30000);
         
     } catch (error) {
         console.error('Error loading dashboard data:', error);
-        showError('Failed to load dashboard data');
+        showError('Failed to load dashboard data. Using demo mode.');
+        // Load demo data even if there's an error
+        const bots = await getMockBotData();
+        updateStats(bots);
+        renderBots(bots);
+        hideLoadingState();
     }
 }
 
 // Mock data for demonstration
 async function getMockBotData() {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
     return [
         {
-            id: '123456789',
+            id: '123456789012345678',
             owner_id: '1435310225010987088',
             username: 'TestBot#1234',
             token: 'MTQ0NDIxMzEwNDU1NTcyMDcwNg.GVVyEu.test_token_here',
@@ -48,18 +68,29 @@ async function getMockBotData() {
             running: true,
             created_at: new Date().toISOString(),
             packages: ['discord.py', 'python-dotenv'],
-            ip: '127.0.0.1'
+            ip: '192.168.1.100'
         },
         {
-            id: '987654321',
+            id: '987654321098765432',
             owner_id: '1435310225010987088',
             username: 'JSBot#5678',
-            token: 'MTQ0NDIxMzEwNDU1NTcyMDcwNg.GVVyEu.another_token',
+            token: 'MTQ0NDIxMzEwNDU1NTcyMDcwNg.GVVyEu.another_token_here',
             language: 'javascript',
             running: false,
-            created_at: new Date().toISOString(),
-            packages: ['discord.js'],
-            ip: '127.0.0.1'
+            created_at: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
+            packages: ['discord.js', 'dotenv'],
+            ip: '192.168.1.101'
+        },
+        {
+            id: '555555555555555555',
+            owner_id: '1435310225010987088',
+            username: 'JavaBot#9999',
+            token: 'MTQ0NDIxMzEwNDU1NTcyMDcwNg.GVVyEu.java_token_here',
+            language: 'java',
+            running: true,
+            created_at: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
+            packages: ['JDA', 'dotenv'],
+            ip: '192.168.1.102'
         }
     ];
 }
@@ -70,15 +101,32 @@ function updateStats(bots) {
     const offlineBots = totalBots - onlineBots;
     const uniqueUsers = new Set(bots.map(bot => bot.owner_id)).size;
     
-    document.getElementById('totalBots').textContent = totalBots;
-    document.getElementById('onlineBots').textContent = onlineBots;
-    document.getElementById('offlineBots').textContent = offlineBots;
-    document.getElementById('totalUsers').textContent = uniqueUsers;
+    const totalBotsEl = document.getElementById('totalBots');
+    const onlineBotsEl = document.getElementById('onlineBots');
+    const offlineBotsEl = document.getElementById('offlineBots');
+    const totalUsersEl = document.getElementById('totalUsers');
+    
+    if (totalBotsEl) totalBotsEl.textContent = totalBots;
+    if (onlineBotsEl) onlineBotsEl.textContent = onlineBots;
+    if (offlineBotsEl) offlineBotsEl.textContent = offlineBots;
+    if (totalUsersEl) totalUsersEl.textContent = uniqueUsers;
 }
 
 function renderBots(bots) {
     const botsGrid = document.getElementById('botsGrid');
+    if (!botsGrid) return;
+    
     botsGrid.innerHTML = '';
+
+    if (bots.length === 0) {
+        botsGrid.innerHTML = `
+            <div class="no-bots-message">
+                <h3>No Bots Found</h3>
+                <p>No bots are currently hosted on Zen Hosting.</p>
+            </div>
+        `;
+        return;
+    }
 
     bots.forEach(bot => {
         const botCard = document.createElement('div');
@@ -111,6 +159,10 @@ function renderBots(bots) {
                     <span class="info-label">Created:</span>
                     <span class="info-value">${new Date(bot.created_at).toLocaleDateString()}</span>
                 </div>
+                <div class="info-row">
+                    <span class="info-label">Packages:</span>
+                    <span class="info-value">${bot.packages.join(', ') || 'None'}</span>
+                </div>
             </div>
             <div class="token-display" title="Click to copy" onclick="copyToken('${bot.token}')">
                 ${bot.token}
@@ -133,12 +185,21 @@ function copyToken(token) {
     navigator.clipboard.writeText(token).then(() => {
         showSuccess('Token copied to clipboard!');
     }).catch(() => {
-        showError('Failed to copy token');
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = token;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showSuccess('Token copied to clipboard!');
     });
 }
 
 async function sendMessage(botId) {
     const messageInput = document.getElementById(`message-${botId}`);
+    if (!messageInput) return;
+    
     const message = messageInput.value.trim();
     
     if (!message) {
@@ -147,14 +208,7 @@ async function sendMessage(botId) {
     }
 
     try {
-        // In real implementation, call your API
-        // const response = await fetch(`${API_BASE_URL}/control/message/${botId}`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({ message: message })
-        // });
+        showLoadingState();
         
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000));
@@ -164,6 +218,8 @@ async function sendMessage(botId) {
     } catch (error) {
         console.error('Error sending message:', error);
         showError('Error sending message');
+    } finally {
+        hideLoadingState();
     }
 }
 
@@ -173,11 +229,10 @@ async function unhostBot(botId) {
     }
 
     try {
-        // In real implementation, call your API
-        // const response = await fetch(`${API_BASE_URL}/control/unhost/${botId}`);
+        showLoadingState();
         
         // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 1500));
         
         showSuccess('Bot unhosting initiated!');
         // Refresh data after a short delay
@@ -185,13 +240,89 @@ async function unhostBot(botId) {
     } catch (error) {
         console.error('Error unhosting bot:', error);
         showError('Error unhosting bot');
+    } finally {
+        hideLoadingState();
     }
 }
 
+function showLoadingState() {
+    // You can add a loading spinner here if needed
+    console.log('Loading...');
+}
+
+function hideLoadingState() {
+    // Hide loading spinner if added
+    console.log('Loading complete');
+}
+
 function showSuccess(message) {
-    alert(`✅ ${message}`);
+    // Create a nice toast notification
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #00ff00;
+        color: #000;
+        padding: 12px 20px;
+        border-radius: 4px;
+        font-weight: 600;
+        z-index: 1000;
+        box-shadow: 0 0 10px #00ff00;
+    `;
+    toast.textContent = `✅ ${message}`;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        document.body.removeChild(toast);
+    }, 3000);
 }
 
 function showError(message) {
-    alert(`❌ ${message}`);
+    // Create a nice error toast notification
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #ff0000;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 4px;
+        font-weight: 600;
+        z-index: 1000;
+        box-shadow: 0 0 10px #ff0000;
+    `;
+    toast.textContent = `❌ ${message}`;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        document.body.removeChild(toast);
+    }, 3000);
 }
+
+// Add some CSS for the no-bots message
+const style = document.createElement('style');
+style.textContent = `
+    .no-bots-message {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 3rem;
+        background: #001a1a;
+        border: 1px solid #00ffff;
+        border-radius: 8px;
+    }
+    
+    .no-bots-message h3 {
+        font-family: 'Orbitron', monospace;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #00ffff;
+    }
+    
+    .no-bots-message p {
+        color: #00ffff;
+        opacity: 0.8;
+    }
+`;
+document.head.appendChild(style);
