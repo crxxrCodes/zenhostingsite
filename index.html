@@ -5,219 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zen Hosting - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container {
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-        }
-
-        .logo {
-            font-size: 48px;
-            font-weight: 700;
-            color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .logo i {
-            margin-right: 15px;
-            font-size: 52px;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e0e0e0;
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #000;
-            font-weight: 600;
-        }
-
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: #000;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            margin-bottom: 15px;
-        }
-
-        .btn:hover {
-            background: #333;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-discord {
-            background: #5865F2;
-        }
-
-        .btn-discord:hover {
-            background: #4752c4;
-            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.2);
-        }
-
-        footer {
-            margin-top: 30px;
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-        }
-
-        .user-info {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #000;
-        }
-
-        .user-info h3 {
-            margin-bottom: 10px;
-            color: #000;
-        }
-    </style>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/popups.css">
 </head>
 <body>
     <div class="container">
-        <div class="logo">
-            <i class="fas fa-leaf"></i>
-            ZEN HOSTING
-        </div>
-
-        <div class="card">
-            <h1>Welcome to Zen Hosting</h1>
-            <p class="subtitle">Manage your Discord bots with ease and reliability</p>
-            
-            <button id="discord-login" class="btn btn-discord">
-                <i class="fab fa-discord"></i> Login with Discord
-            </button>
-            
-            <button id="dashboard-btn" class="btn">
-                <i class="fas fa-tachometer-alt"></i> Go to Dashboard
-            </button>
-
-            <div id="user-info" class="user-info" style="display: none;">
-                <h3>Logged in as: <span id="username">User</span></h3>
-                <p>Discord ID: <span id="discord-id">123456789</span></p>
+        <header>
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                ZEN HOSTING
             </div>
-        </div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Services</a>
+                <a href="#" class="nav-link">Pricing</a>
+                <a href="#" class="nav-link">Support</a>
+                <button class="btn dashboard-btn">Go to Dashboard</button>
+                <button class="btn btn-outline logout-btn" style="display: none;">Logout</button>
+            </nav>
+        </header>
+
+        <main>
+            <div class="auth-container">
+                <div class="card auth-card">
+                    <div class="auth-logo">
+                        <i class="fas fa-leaf"></i>
+                        ZEN HOSTING
+                    </div>
+                    
+                    <h1 class="auth-title">Welcome to Zen Hosting</h1>
+                    <p class="auth-subtitle">Manage your Discord bots with enterprise-grade reliability</p>
+                    
+                    <div class="auth-buttons">
+                        <button id="discord-login" class="btn btn-discord login-btn">
+                            <i class="fab fa-discord"></i> Login with Discord
+                        </button>
+                        
+                        <button class="btn dashboard-btn">
+                            <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+                        </button>
+                    </div>
+
+                    <div class="user-info" style="display: none;">
+                        <h3>Logged in as: <span class="username">User</span></h3>
+                        <p>Discord ID: <span class="discord-id">123456789</span></p>
+                    </div>
+                </div>
+            </div>
+        </main>
         
         <footer>
             <p>Zen Hosting &copy; 2025</p>
         </footer>
     </div>
 
+    <script src="js/auth.js"></script>
+    <script src="js/discord.js"></script>
+    <script src="js/popups.js"></script>
     <script>
-        // Check if user is logged in
-        function isLoggedIn() {
-            return localStorage.getItem('zenHostingLoggedIn') === 'true';
-        }
-
-        // Get user info from localStorage
-        function getUserInfo() {
-            return {
-                username: localStorage.getItem('zenHostingUsername') || 'User',
-                discordId: localStorage.getItem('zenHostingDiscordId') || '123456789',
-                avatar: localStorage.getItem('zenHostingAvatar') || ''
-            };
-        }
-
-        // Update UI based on login status
-        function updateUI() {
-            const userInfoDiv = document.getElementById('user-info');
-            const dashboardBtn = document.getElementById('dashboard-btn');
-            
-            if (isLoggedIn()) {
-                const user = getUserInfo();
-                document.getElementById('username').textContent = user.username;
-                document.getElementById('discord-id').textContent = user.discordId;
-                userInfoDiv.style.display = 'block';
-                dashboardBtn.innerHTML = '<i class="fas fa-tachometer-alt"></i> Go to Dashboard';
-            } else {
-                userInfoDiv.style.display = 'none';
-                dashboardBtn.innerHTML = '<i class="fas fa-tachometer-alt"></i> Go to Dashboard';
-            }
-        }
-
-        // Handle dashboard button click
-        function handleDashboardClick() {
-            if (isLoggedIn()) {
-                window.location.href = 'dashboard.html';
-            } else {
-                window.location.href = 'register.html';
-            }
-        }
-
-        // Simulate Discord login
-        function handleDiscordLogin() {
-            // In a real app, this would redirect to Discord OAuth
-            // For demo, we'll simulate a login
-            const discordUsers = [
-                { username: 'JohnDoe#1234', id: '123456789012345678', avatar: '' },
-                { username: 'SarahSmith#5678', id: '234567890123456789', avatar: '' },
-                { username: 'MikeJohnson#9012', id: '345678901234567890', avatar: '' }
-            ];
-            
-            const randomUser = discordUsers[Math.floor(Math.random() * discordUsers.length)];
-            
-            // Store user data
-            localStorage.setItem('zenHostingLoggedIn', 'true');
-            localStorage.setItem('zenHostingUsername', randomUser.username);
-            localStorage.setItem('zenHostingDiscordId', randomUser.id);
-            localStorage.setItem('zenHostingAvatar', randomUser.avatar);
-            
-            alert(`Successfully logged in as ${randomUser.username}`);
-            updateUI();
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            updateUI();
-            
-            document.getElementById('dashboard-btn').addEventListener('click', handleDashboardClick);
-            document.getElementById('discord-login').addEventListener('click', handleDiscordLogin);
+        document.getElementById('discord-login').addEventListener('click', () => {
+            discordAuth.login();
         });
     </script>
 </body>
