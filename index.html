@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zen Hosting - Register</title>
+    <title>Zen Hosting - Support Center</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -53,78 +53,32 @@
             padding: 60px 0;
         }
 
-        .registration-section {
-            flex: 1;
-            min-width: 300px;
+        .hero-section {
+            width: 100%;
+            margin-bottom: 40px;
         }
 
-        .info-section {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .card {
+        .hero-card {
             background-color: white;
             border-radius: 8px;
-            padding: 30px;
+            padding: 40px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             border: 1px solid #e0e0e0;
+            text-align: center;
         }
 
         h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
+            font-size: 36px;
+            margin-bottom: 15px;
             color: #000;
             font-weight: 700;
         }
 
-        h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            color: #000;
-            font-weight: 600;
-        }
-
-        h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #000;
-            font-weight: 600;
-        }
-
-        .subtitle {
+        .hero-subtitle {
             color: #666;
             margin-bottom: 30px;
-            font-size: 16px;
+            font-size: 18px;
             line-height: 1.6;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #333;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px 15px;
-            background-color: #f8f9fa;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            color: #333;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #000;
-            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
         }
 
         .btn {
@@ -138,8 +92,8 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-align: center;
-            width: 100%;
+            text-decoration: none;
+            margin: 0 10px;
         }
 
         .btn:hover {
@@ -148,104 +102,118 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-discord {
-            background: #5865F2;
-            margin-top: 10px;
-        }
-
-        .btn-discord:hover {
-            background: #4752c4;
-            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.2);
-        }
-
-        .terms {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #666;
-            text-align: center;
-        }
-
-        .terms a {
+        .btn-outline {
+            background: transparent;
             color: #000;
-            text-decoration: none;
-            font-weight: 500;
+            border: 1px solid #000;
         }
 
-        .terms a:hover {
-            text-decoration: underline;
+        .btn-outline:hover {
+            background: #000;
+            color: white;
         }
 
-        .fun-facts {
-            margin-top: 30px;
+        .content-section {
+            flex: 1;
+            min-width: 300px;
         }
 
-        .fact-item {
-            display: flex;
-            align-items: flex-start;
+        .sidebar {
+            flex: 0 0 300px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #000;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .path-list {
+            list-style: none;
             margin-bottom: 20px;
         }
 
-        .fact-icon {
-            background: #000;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        .path-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .path-list li:last-child {
+            border-bottom: none;
+        }
+
+        .path-list a {
+            color: #333;
+            text-decoration: none;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
         }
 
-        .fact-content h4 {
-            margin-bottom: 5px;
+        .path-list a:hover {
             color: #000;
-        }
-
-        .fact-content p {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .quote-section {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 6px;
-            border-left: 4px solid #000;
-        }
-
-        .quote {
-            font-style: italic;
-            margin-bottom: 10px;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .quote-author {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .mission-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .mission-link {
-            color: #000;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .mission-link:hover {
             text-decoration: underline;
+        }
+
+        .path-list i {
+            margin-right: 10px;
+            color: #666;
+        }
+
+        .help-list {
+            list-style: none;
+        }
+
+        .help-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .help-list li:last-child {
+            border-bottom: none;
+        }
+
+        .help-list a {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .help-list a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        .help-list i {
+            margin-right: 10px;
+            color: #666;
+        }
+
+        .community-section {
+            margin-top: 30px;
+        }
+
+        .links-section {
+            margin-top: 30px;
         }
 
         footer {
@@ -263,7 +231,7 @@
                 flex-direction: column;
             }
             
-            .registration-section, .info-section {
+            .content-section, .sidebar {
                 width: 100%;
             }
         }
@@ -279,100 +247,69 @@
         </header>
 
         <div class="main-content">
-            <div class="registration-section">
-                <div class="card">
-                    <h1>Welcome to Zen Hosting</h1>
-                    <p class="subtitle">Launch, host, orbit. Sign up to deploy your projects and manage your infrastructure.</p>
-                    
-                    <form id="registration-form">
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" id="username" name="username" placeholder="Choose a username" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" name="password" placeholder="Create a secure password" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="confirm-password">Confirm Password</label>
-                            <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your password" required>
-                        </div>
-                        
-                        <button type="submit" class="btn">Create Account</button>
-                        <button type="button" class="btn btn-discord">
-                            <i class="fab fa-discord"></i> Sign Up with Discord
-                        </button>
-                        
-                        <p class="terms">
-                            By continuing you accept our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                        </p>
-                    </form>
+            <div class="hero-section">
+                <div class="hero-card">
+                    <h1>Support Center: How can we assist you?</h1>
+                    <p class="hero-subtitle">Find answers, guides, and resources to help you with Zen Hosting services</p>
+                    <a href="#" class="btn"><i class="fab fa-discord"></i> Join our Discord</a>
+                    <a href="#" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> Panel Link</a>
                 </div>
             </div>
-            
-            <div class="info-section">
+
+            <div class="content-section">
                 <div class="card">
-                    <h2>Why Choose Zen Hosting?</h2>
-                    
-                    <div class="fun-facts">
-                        <div class="fact-item">
-                            <div class="fact-icon">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <div class="fact-content">
-                                <h4>Reliable Uptime</h4>
-                                <p>We keep your bots online with consistent uptime and fast response times so your projects run smoothly around the clock.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="fact-item">
-                            <div class="fact-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div class="fact-content">
-                                <h4>Fast Setup</h4>
-                                <p>Launch your bot in minutes with simple deployment and systems that handle the heavy lifting for you.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="fact-item">
-                            <div class="fact-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="fact-content">
-                                <h4>Steady Performance</h4>
-                                <p>Our servers are tuned for Discord, giving you consistent speed and reliability even under high demand.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="fact-item">
-                            <div class="fact-icon">
-                                <i class="fas fa-headset"></i>
-                            </div>
-                            <div class="fact-content">
-                                <h4>Support That Cares</h4>
-                                <p>Our team is always ready to help with quick, friendly support focused on keeping your bot online and performing at its best.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="quote-section">
-                        <p class="quote">"The Milky Way smells like raspberries and rum, we call that the aroma of uptime."</p>
-                        <p class="quote-author">Sweet stability. Cosmic reliability.</p>
-                    </div>
-                    
-                    <div class="mission-links">
-                        <a href="#" class="mission-link">Support Server</a>
-                        <a href="#" class="mission-link">Network Status</a>
-                        <a href="#" class="mission-link">Main Website</a>
-                    </div>
+                    <h2>Paths</h2>
+                    <ul class="path-list">
+                        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="/path/gen_device"><i class="fas fa-microchip"></i> Generate Device</a></li>
+                        <li><a href="/business"><i class="fas fa-briefcase"></i> Business</a></li>
+                        <li><a href="/services"><i class="fas fa-cogs"></i> Services</a></li>
+                        <li><a href="/user"><i class="fas fa-user"></i> User Dashboard</a></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2>Getting Started</h2>
+                    <p>Let's get you on your journey with Zen Hosting. Follow our guides to set up your hosting environment quickly and efficiently.</p>
+                    <a href="#" class="btn" style="margin-top: 15px; display: inline-block;">View Getting Started Guide</a>
+                </div>
+
+                <div class="card">
+                    <h2>Announcements</h2>
+                    <p>Get the latest announcements about service updates, new features, and maintenance schedules.</p>
+                    <a href="#" class="btn btn-outline" style="margin-top: 15px; display: inline-block;">View All Announcements</a>
+                </div>
+
+                <div class="card">
+                    <h2>Terms of Service</h2>
+                    <p>Read over our official terms of service and usage policies to understand your rights and responsibilities.</p>
+                    <a href="#" class="btn btn-outline" style="margin-top: 15px; display: inline-block;">Read Terms of Service</a>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="card">
+                    <h3>Help</h3>
+                    <ul class="help-list">
+                        <li><a href="#"><i class="fas fa-rocket"></i> Getting Started</a></li>
+                        <li><a href="#"><i class="fas fa-bullhorn"></i> Announcements</a></li>
+                        <li><a href="#"><i class="fas fa-code"></i> Scriptlets</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="card community-section">
+                    <h3>Community</h3>
+                    <p>Join our community to get help, share ideas, and connect with other users.</p>
+                    <a href="#" class="btn" style="margin-top: 15px; display: block; text-align: center;"><i class="fab fa-discord"></i> Discord Server</a>
+                </div>
+
+                <div class="card links-section">
+                    <h3>Links</h3>
+                    <p>Quick access to important Zen Hosting resources.</p>
+                    <a href="#" class="btn btn-outline" style="margin-top: 15px; display: block; text-align: center;"><i class="fas fa-tachometer-alt"></i> Control Panel</a>
+                    <a href="register.html" class="btn" style="margin-top: 10px; display: block; text-align: center;"><i class="fas fa-user-plus"></i> Create Account</a>
                 </div>
             </div>
         </div>
@@ -381,22 +318,5 @@
             <p>Zen Hosting &copy; 2025</p>
         </footer>
     </div>
-
-    <script>
-        document.getElementById('registration-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            // In a real application, you would submit the form to a server here
-            alert('Account created successfully! Welcome to Zen Hosting.');
-        });
-    </script>
 </body>
 </html>
