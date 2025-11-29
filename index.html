@@ -31,6 +31,9 @@
             padding: 25px 0;
             border-bottom: 1px solid #e0e0e0;
             background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
@@ -44,6 +47,24 @@
         .logo i {
             margin-right: 10px;
             font-size: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #f0f0f0;
         }
 
         .main-content {
@@ -234,6 +255,11 @@
             .content-section, .sidebar {
                 width: 100%;
             }
+            
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
@@ -243,6 +269,13 @@
             <div class="logo">
                 <i class="fas fa-leaf"></i>
                 ZEN HOSTING
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Services</a>
+                <a href="#" class="nav-link">Pricing</a>
+                <a href="#" class="nav-link">Support</a>
+                <button id="dashboard-btn" class="btn">Go to Dashboard</button>
             </div>
         </header>
 
@@ -309,7 +342,7 @@
                     <h3>Links</h3>
                     <p>Quick access to important Zen Hosting resources.</p>
                     <a href="#" class="btn btn-outline" style="margin-top: 15px; display: block; text-align: center;"><i class="fas fa-tachometer-alt"></i> Control Panel</a>
-                    <a href="register.html" class="btn" style="margin-top: 10px; display: block; text-align: center;"><i class="fas fa-user-plus"></i> Create Account</a>
+                    <button id="sidebar-dashboard-btn" class="btn" style="margin-top: 10px; display: block; text-align: center;"><i class="fas fa-tachometer-alt"></i> Go to Dashboard</button>
                 </div>
             </div>
         </div>
@@ -318,5 +351,34 @@
             <p>Zen Hosting &copy; 2025</p>
         </footer>
     </div>
+
+    <script>
+        // Check if user is logged in (using localStorage for demo)
+        function isLoggedIn() {
+            return localStorage.getItem('zenHostingLoggedIn') === 'true';
+        }
+
+        // Dashboard button functionality
+        function handleDashboardClick() {
+            if (isLoggedIn()) {
+                // Redirect to dashboard if logged in
+                window.location.href = 'https://zenhosting.netlify.app/dashboard';
+            } else {
+                // Redirect to register if not logged in
+                window.location.href = 'https://zenhosting.netlify.app/register';
+            }
+        }
+
+        // Add event listeners to dashboard buttons
+        document.getElementById('dashboard-btn').addEventListener('click', handleDashboardClick);
+        document.getElementById('sidebar-dashboard-btn').addEventListener('click', handleDashboardClick);
+
+        // For demo purposes - simulate login state
+        // In a real application, this would be handled by your authentication system
+        console.log('Current login status:', isLoggedIn());
+        
+        // Uncomment the line below to simulate being logged in for testing
+        // localStorage.setItem('zenHostingLoggedIn', 'true');
+    </script>
 </body>
 </html>
