@@ -3,181 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zen Hosting - Dashboard</title>
+    <title>Dashboard - Zen Hosting</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/popups.css">
-    <style>
-        .main-content {
-            padding: 40px 0;
-        }
-
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .dashboard-header h1 {
-            font-size: 32px;
-            color: #000;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 25px;
-        }
-
-        .stat-number {
-            font-size: 32px;
-            font-weight: 700;
-            color: #000;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .bot-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .bot-card {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
-        }
-
-        .bot-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .bot-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .bot-name {
-            font-weight: 600;
-            color: #000;
-            font-size: 18px;
-        }
-
-        .bot-status {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .status-online {
-            background: #e8f5e8;
-            color: #2e7d32;
-        }
-
-        .status-offline {
-            background: #ffebee;
-            color: #c62828;
-        }
-
-        .bot-details {
-            margin-bottom: 15px;
-        }
-
-        .bot-detail {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
-        .bot-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .bot-actions .btn {
-            flex: 1;
-            text-align: center;
-            padding: 8px;
-            font-size: 13px;
-        }
-
-        .no-bots {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            grid-column: 1 / -1;
-        }
-
-        .no-bots i {
-            font-size: 48px;
-            margin-bottom: 15px;
-            color: #e0e0e0;
-        }
-
-        .add-bot-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: #f8f9fa;
-            border: 2px dashed #e0e0e0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-height: 200px;
-        }
-
-        .add-bot-card:hover {
-            border-color: #000;
-            background: #f0f0f0;
-        }
-
-        .add-bot-card i {
-            font-size: 32px;
-            margin-bottom: 10px;
-            color: #666;
-        }
-
-        .user-menu {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .user-info {
-            text-align: right;
-        }
-
-        .user-info .username {
-            font-weight: 600;
-            color: #000;
-        }
-
-        .user-info .discord-id {
-            font-size: 12px;
-            color: #666;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -186,53 +16,101 @@
                 <i class="fas fa-leaf"></i>
                 ZEN HOSTING
             </div>
-            <div class="user-menu">
-                <div class="user-info">
-                    <div class="username" id="header-username">User</div>
-                    <div class="discord-id" id="header-discord-id">Discord ID: 123456789</div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="subscription.html" class="nav-link">Pricing</a>
+                <div class="user-menu">
+                    <div class="user-info">
+                        <span class="username">User</span>
+                        <span class="subscription-tier starter" id="header-subscription">Starter</span>
+                    </div>
+                    <button class="btn btn-outline logout-btn">Logout</button>
                 </div>
-                <button class="btn btn-outline logout-btn">Logout</button>
-            </div>
+            </nav>
         </header>
 
-        <main class="main-content">
+        <main class="dashboard-main">
             <div class="dashboard-header">
-                <h1>Bot Dashboard</h1>
-                <button id="add-bot-btn" class="btn">
-                    <i class="fas fa-plus"></i> Add New Bot
-                </button>
-            </div>
-
-            <div class="stats">
-                <div class="card stat-card">
-                    <div class="stat-number" id="total-bots">0</div>
-                    <div class="stat-label">Total Bots</div>
+                <div class="header-left">
+                    <h1>Bot Dashboard</h1>
+                    <p>Manage your hosted Discord bots</p>
                 </div>
-                <div class="card stat-card">
-                    <div class="stat-number" id="online-bots">0</div>
-                    <div class="stat-label">Online Bots</div>
-                </div>
-                <div class="card stat-card">
-                    <div class="stat-number" id="total-servers">0</div>
-                    <div class="stat-label">Total Servers</div>
+                <div class="header-right">
+                    <button class="btn" id="add-bot-btn">
+                        <i class="fas fa-plus"></i> Host New Bot
+                    </button>
+                    <a href="subscription.html" class="btn btn-outline" id="upgrade-btn">
+                        <i class="fas fa-crown"></i> Upgrade
+                    </a>
                 </div>
             </div>
 
-            <div class="card">
-                <h2><i class="fas fa-robot"></i> Your Discord Bots</h2>
-                <div class="bot-list" id="bot-list">
-                    <!-- Bot cards will be dynamically added here -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="total-bots">0</div>
+                        <div class="stat-label">Total Bots</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon online">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="online-bots">0</div>
+                        <div class="stat-label">Online Bots</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="total-servers">0</div>
+                        <div class="stat-label">Total Servers</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="bots-limit">1</div>
+                        <div class="stat-label">Bot Limit</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-robot"></i> Your Hosted Bots</h2>
+                    <div class="section-actions">
+                        <span id="bots-count">0 bots</span>
+                    </div>
+                </div>
+                
+                <div class="bots-container">
+                    <div class="bots-grid" id="bot-list">
+                        <!-- Bots will be loaded here -->
+                    </div>
+                    
+                    <div class="empty-state" id="empty-state">
+                        <i class="fas fa-robot"></i>
+                        <h3>No Bots Hosted</h3>
+                        <p>Get started by hosting your first Discord bot</p>
+                        <button class="btn" onclick="dashboardManager.showHostBotPopup()">
+                            <i class="fas fa-plus"></i> Host Your First Bot
+                        </button>
+                    </div>
                 </div>
             </div>
         </main>
-        
-        <footer>
-            <p>Zen Hosting &copy; 2025</p>
-        </footer>
     </div>
 
     <script src="js/auth.js"></script>
-    <script src="js/discord.js"></script>
     <script src="js/popups.js"></script>
     <script src="js/dashboard.js"></script>
 </body>
