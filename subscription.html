@@ -1,1 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Zen Hosting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/popups.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                ZEN HOSTING
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <button class="btn btn-outline logout-btn">Logout</button>
+            </nav>
+        </header>
 
+        <main class="subscription-main">
+            <div class="subscription-header">
+                <h1>Choose Your Plan</h1>
+                <p>Scale your bot hosting with our flexible plans</p>
+            </div>
+
+            <div class="current-plan-banner">
+                <div class="current-plan-info">
+                    <h3>Current Plan: <span class="subscription-tier starter" id="current-plan-display">Starter</span></h3>
+                    <p>Bots Hosted: <span id="current-bots-count">0</span>/<span id="current-bots-limit">1</span></p>
+                </div>
+            </div>
+
+            <div class="plans-container">
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3 class="plan-name">Starter</h3>
+                        <div class="plan-price">$0</div>
+                        <div class="plan-period">forever</div>
+                        <div class="current-plan-tag" id="current-starter-tag" style="display: none;">Current Plan</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 1 Bot Hosting</li>
+                        <li><i class="fas fa-check"></i> 512MB RAM</li>
+                        <li><i class="fas fa-check"></i> Basic Support</li>
+                        <li><i class="fas fa-check"></i> 99% Uptime</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Unlimited Bots</li>
+                        <li class="disabled"><i class="fas fa-times"></i> Priority Support</li>
+                        <li class="disabled"><i class="fas fa-times"></i> 4GB RAM</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="subscriptionManager.selectPlan('starter')">
+                        <span id="starter-btn-text">Select Starter</span>
+                    </button>
+                </div>
+
+                <div class="plan-card premium">
+                    <div class="plan-badge">Most Popular</div>
+                    <div class="plan-header">
+                        <h3 class="plan-name">Premium</h3>
+                        <div class="plan-price">$9.99</div>
+                        <div class="plan-period">per month</div>
+                        <div class="current-plan-tag" id="current-premium-tag" style="display: none;">Current Plan</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Unlimited Bot Hosting</li>
+                        <li><i class="fas fa-check"></i> 4GB RAM per Bot</li>
+                        <li><i class="fas fa-check"></i> Priority Support</li>
+                        <li><i class="fas fa-check"></i> 99.9% Uptime</li>
+                        <li><i class="fas fa-check"></i> Advanced Analytics</li>
+                        <li><i class="fas fa-check"></i> Custom Domains</li>
+                        <li><i class="fas fa-check"></i> API Access</li>
+                    </ul>
+                    <button class="btn premium-btn" onclick="subscriptionManager.selectPlan('premium')">
+                        <span id="premium-btn-text">Upgrade to Premium</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="feature-comparison">
+                <h3>Feature Comparison</h3>
+                <div class="comparison-table">
+                    <div class="comparison-row">
+                        <div class="comparison-feature">Bot Hosting Limit</div>
+                        <div class="comparison-starter">1 Bot</div>
+                        <div class="comparison-premium">Unlimited</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-feature">RAM per Bot</div>
+                        <div class="comparison-starter">512MB</div>
+                        <div class="comparison-premium">4GB</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-feature">Support</div>
+                        <div class="comparison-starter">Basic</div>
+                        <div class="comparison-premium">Priority</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-feature">Uptime SLA</div>
+                        <div class="comparison-starter">99%</div>
+                        <div class="comparison-premium">99.9%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subscription-actions">
+                <a href="dashboard.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/popups.js"></script>
+    <script>
+        class SubscriptionManager {
+            constructor() {
+                this.currentPlan = 'starter';
+                this.init();
+            }
+
+            init() {
+                if (!authManager.isLoggedIn()) {
+                    window.location.href = 'index.html';
+                    return;
+                }
+                this.loadUserData();
+                this.updateUI();
+            }
+
+            loadUserData() {
+                const user = authManager.currentUser;
+                const subscription = authManager.subscription;
+                
+                if (user && subscription) {
+                    this.currentPlan = subscription.plan.toLowerCase();
+                    this.updateUI();
+                }
+            }
+
+            updateUI() {
+                // Update current plan display
+                const planDisplay = document.getElementById('current-plan-display');
+                if (planDisplay) {
+                    planDisplay.textContent = this.currentPlan.charAt(0).toUpperCase() + this.currentPlan.slice(1);
+                    planDisplay.className = `subscription-tier ${this.currentPlan}`;
+                }
+
+                // Update bot counts
+                const botCount = authManager.userBots ? authManager.userBots.length : 0;
+                const botLimit = this.currentPlan === 'premium' ? '∞' : '1';
+                
+                document.getElementById('current-bots-count').textContent = botCount;
+                document.getElementById('current-bots-limit').textContent = botLimit;
+
+                // Update plan selection buttons
+                document.getElementById('current-starter-tag').style.display = this.currentPlan === 'starter' ? 'block' : 'none';
+                document.getElementById('current-premium-tag').style.display = this.currentPlan === 'premium' ? 'block' : 'none';
+
+                document.getElementById('starter-btn-text').textContent = 
+                    this.currentPlan === 'starter' ? 'Current Plan' : 'Select Starter';
+                document.getElementById('premium-btn-text').textContent = 
+                    this.currentPlan === 'premium' ? 'Current Plan' : 'Upgrade to Premium';
+            }
+
+            selectPlan(plan) {
+                if (plan === this.currentPlan) {
+                    popupManager.showError('Already on this plan', `You're already on the ${plan} plan.`);
+                    return;
+                }
+
+                if (plan === 'premium') {
+                    popupManager.showConfirm(
+                        'Upgrade to Premium?',
+                        'This will upgrade your account to Premium for $9.99/month and give you unlimited bot hosting.',
+                        'subscriptionManager.confirmUpgrade()'
+                    );
+                } else {
+                    popupManager.showConfirm(
+                        'Downgrade to Starter?',
+                        'This will remove Premium features and limit you to 1 bot. Any extra bots will be stopped.',
+                        'subscriptionManager.confirmDowngrade()'
+                    );
+                }
+            }
+
+            confirmUpgrade() {
+                popupManager.showLoading('Upgrading to Premium...');
+                
+                setTimeout(() => {
+                    authManager.subscription = {
+                        plan: 'Premium',
+                        bots_limit: 999,
+                        max_ram: '4GB'
+                    };
+                    authManager.saveUser(authManager.currentUser, authManager.subscription);
+                    popupManager.showSuccess('Upgraded to Premium!', 'Enjoy unlimited bot hosting and premium features.');
+                    this.currentPlan = 'premium';
+                    this.updateUI();
+                }, 2000);
+            }
+
+            confirmDowngrade() {
+                popupManager.showLoading('Downgrading to Starter...');
+                
+                setTimeout(() => {
+                    authManager.subscription = {
+                        plan: 'Starter', 
+                        bots_limit: 1,
+                        max_ram: '512MB'
+                    };
+                    authManager.saveUser(authManager.currentUser, authManager.subscription);
+                    popupManager.showSuccess('Downgraded to Starter', 'You can always upgrade again later.');
+                    this.currentPlan = 'starter';
+                    this.updateUI();
+                }, 2000);
+            }
+        }
+
+        const subscriptionManager = new SubscriptionManager();
+    </script>
+</body>
+</html>
