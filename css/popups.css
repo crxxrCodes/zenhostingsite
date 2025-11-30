@@ -10,6 +10,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 .popup-overlay.active {
@@ -21,9 +22,11 @@
     background: white;
     border-radius: 12px;
     padding: 30px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
     width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
     position: relative;
     animation: popupSlideIn 0.3s ease;
 }
@@ -31,11 +34,11 @@
 @keyframes popupSlideIn {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-20px) scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
@@ -45,7 +48,7 @@
     right: 15px;
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
     color: #666;
     width: 30px;
@@ -54,6 +57,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s ease;
 }
 
 .popup-close:hover {
@@ -78,6 +82,7 @@
     display: flex;
     gap: 10px;
     justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 .popup-buttons .btn {
@@ -123,4 +128,107 @@
 
 .popup-error .popup-icon {
     color: #c62828;
+}
+
+.popup-premium .popup-icon {
+    color: #FFD700;
+}
+
+.popup-details {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-top: 10px;
+    font-size: 14px;
+    border-left: 3px solid #000;
+}
+
+/* Status displays */
+.status-display {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.status-online {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.status-offline {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* Premium features in popups */
+.premium-features {
+    margin: 20px 0;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.feature:hover {
+    background: #f0f0f0;
+    transform: translateX(5px);
+}
+
+.feature i {
+    margin-right: 12px;
+    font-size: 18px;
+    color: #000;
+    width: 20px;
+    text-align: center;
+}
+
+/* Bot management forms */
+.bot-management {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.bot-management::-webkit-scrollbar {
+    width: 6px;
+}
+
+.bot-management::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.bot-management::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.bot-management::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive popups */
+@media (max-width: 768px) {
+    .popup {
+        padding: 20px;
+        margin: 20px;
+    }
+    
+    .popup-buttons {
+        flex-direction: column;
+    }
+    
+    .popup-buttons .btn {
+        width: 100%;
+    }
 }
