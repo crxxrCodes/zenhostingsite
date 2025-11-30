@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zen Hosting - Home</title>
+    <title>Zen Hosting - Discord Bot Hosting</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/auth.css">
@@ -18,55 +18,180 @@
             </div>
             <nav class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
-                <a href="#" class="nav-link">Services</a>
-                <a href="#" class="nav-link">Pricing</a>
-                <a href="#" class="nav-link">Support</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#support" class="nav-link">Support</a>
                 <button class="btn dashboard-btn">Go to Dashboard</button>
                 <button class="btn btn-outline logout-btn" style="display: none;">Logout</button>
             </nav>
         </header>
 
         <main>
-            <div class="auth-container">
-                <div class="card auth-card">
-                    <div class="auth-logo">
-                        <i class="fas fa-leaf"></i>
-                        ZEN HOSTING
-                    </div>
-                    
-                    <h1 class="auth-title">Welcome to Zen Hosting</h1>
-                    <p class="auth-subtitle">Manage your Discord bots with enterprise-grade reliability</p>
-                    
-                    <div class="auth-buttons">
-                        <button id="discord-login" class="btn btn-discord login-btn">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Professional Discord Bot Hosting</h1>
+                    <p class="hero-subtitle">Host your Discord bots with enterprise-grade reliability. Built for developers by developers.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-large btn-discord login-btn">
                             <i class="fab fa-discord"></i> Login with Discord
                         </button>
-                        
-                        <button class="btn dashboard-btn">
-                            <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+                        <button class="btn btn-large btn-outline dashboard-btn">
+                            <i class="fas fa-rocket"></i> Get Started
                         </button>
                     </div>
+                </div>
+            </section>
 
-                    <div class="user-info" style="display: none;">
-                        <h3>Logged in as: <span class="username">User</span></h3>
-                        <p>Discord ID: <span class="discord-id">123456789</span></p>
+            <section id="features" class="features">
+                <div class="section-header">
+                    <h2>Why Choose Zen Hosting?</h2>
+                    <p>Everything you need to host and manage your Discord bots</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>99.9% Uptime</h3>
+                        <p>Enterprise-grade infrastructure with guaranteed uptime and reliability</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Fast Deployment</h3>
+                        <p>Get your bot online in minutes with our simple hosting process</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Multi-Language</h3>
+                        <p>Support for Python, JavaScript, and Java bots</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Secure Hosting</h3>
+                        <p>Your bot tokens and code are encrypted and secure</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3>Auto-Restart</h3>
+                        <p>Automatic restart on crashes with detailed error logging</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>24/7 Support</h3>
+                        <p>Expert support team ready to help you with any issues</p>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            <section id="pricing" class="pricing">
+                <div class="section-header">
+                    <h2>Simple, Transparent Pricing</h2>
+                    <p>No hidden fees. Scale as you grow.</p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Starter</h3>
+                            <div class="price">$0</div>
+                            <div class="period">forever</div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> 1 Bot Hosting</li>
+                            <li><i class="fas fa-check"></i> 512MB RAM</li>
+                            <li><i class="fas fa-check"></i> Basic Support</li>
+                            <li><i class="fas fa-check"></i> 99% Uptime</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Unlimited Bots</li>
+                            <li class="disabled"><i class="fas fa-times"></i> Priority Support</li>
+                        </ul>
+                        <button class="btn btn-outline dashboard-btn">Get Started</button>
+                    </div>
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">Most Popular</div>
+                        <div class="pricing-header">
+                            <h3>Premium</h3>
+                            <div class="price">$9.99</div>
+                            <div class="period">per month</div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Unlimited Bot Hosting</li>
+                            <li><i class="fas fa-check"></i> 4GB RAM per Bot</li>
+                            <li><i class="fas fa-check"></i> Priority Support</li>
+                            <li><i class="fas fa-check"></i> 99.9% Uptime</li>
+                            <li><i class="fas fa-check"></i> Advanced Analytics</li>
+                            <li><i class="fas fa-check"></i> Custom Domains</li>
+                        </ul>
+                        <button class="btn dashboard-btn">Go Premium</button>
+                    </div>
+                </div>
+            </section>
         </main>
         
-        <footer>
-            <p>Zen Hosting &copy; 2025</p>
+        <footer id="support">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Zen Hosting</h4>
+                    <p>Professional Discord bot hosting platform built for developers.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="subscription.html">Pricing</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">Discord Server</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Zen Hosting. All rights reserved.</p>
+            </div>
         </footer>
     </div>
 
     <script src="js/auth.js"></script>
-    <script src="js/discord.js"></script>
     <script src="js/popups.js"></script>
     <script>
-        document.getElementById('discord-login').addEventListener('click', () => {
-            discordAuth.login();
+        // Handle Discord login
+        document.querySelector('.btn-discord').addEventListener('click', function() {
+            popupManager.show(`
+                <h3 class="popup-title">Login with Discord</h3>
+                <p>Redirecting to Discord for authentication...</p>
+                <div class="popup-buttons">
+                    <button class="btn btn-outline" onclick="popupManager.hide()">Cancel</button>
+                    <button class="btn btn-discord" onclick="authManager.simulateDiscordLogin()">Continue to Discord</button>
+                </div>
+            `);
         });
+
+        // Simulate Discord login for demo
+        authManager.simulateDiscordLogin = function() {
+            popupManager.showLoading('Connecting to Discord...');
+            setTimeout(() => {
+                const demoUser = {
+                    id: 'discord_123456',
+                    username: 'DemoUser#1234',
+                    email: 'demo@user.com'
+                };
+                authManager.saveUser(demoUser, { plan: 'Starter', bots_limit: 1 });
+                popupManager.showSuccess('Successfully logged in!');
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            }, 2000);
+        };
     </script>
 </body>
 </html>
